@@ -27,7 +27,7 @@ Em um terminal, exporte as seguintes variáveis de ambiente:
   ```console
   $ pip install -r
   ```
-3. Execute o servidor:
+3. Execute o aplicação:
   ```console 
   $ python3 manage.py runserver
   ```
