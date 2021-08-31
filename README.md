@@ -31,3 +31,8 @@ Em um terminal, exporte as seguintes variáveis de ambiente:
   ```console 
   $ python3 manage.py runserver
   ```
+## Demonstração
+
+| User | Supervisor  |
+|------|-------------|
+| ![image](https://user-images.githubusercontent.com/17788851/131561697-cc388a4c-9a71-48c5-ac3b-4fcd85aa4271.png) | ![image](https://user-images.githubusercontent.com/17788851/131562172-69838f4c-b9fa-4a97-b2f6-cc9b4130576c.png) | 
