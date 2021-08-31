@@ -1,0 +1,36 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+ <div id="content-container" class="container p-none">
+     <div class="callout callout-danger">
+          <form action="" method="post">
+                {% csrf_token %}
+
+
+                <h4>{%trans "are_you_sure" %}</h4>
+
+                <p>{%trans "sure_delete"%}</p>
+         <H3>{{object}}</H3>
+              </div>
+
+     <input class="btn btn-primary"
+                       type="button" value="Cancel"
+                       onclick="window.history.go(-1);"/>
+                <input class="btn btn-danger" type="submit" value="{% trans "sure"%}"/>
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+{% endblock %}

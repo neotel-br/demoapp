@@ -1,0 +1,174 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% load i18n %}
+{% block content %}
+
+
+
+<div class="row">
+
+    <div class="col-xs-12">
+        <div class="box box-primary">
+            <div class="box-header">
+                {% if view.kwargs.id  or view.kwargs.app %}
+                <h1>{{object_list.0.object_content}}</h1>
+                {%endif%}
+
+                    <form id="searchform"  method="get" accept-charset="utf-8">
+
+
+                            <div class="row">
+                                <div class="col-xs-2">
+                                    <select  class="form-control" name="field">
+                                        <option value="name">{%trans "name"%}</option>
+                                        <option value="CPF">{%trans "CPF"%}</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-xs-10">
+                                    <div class="input-group input-group-sx">
+
+                                        <input type="search" name="search" class="form-control">
+                                        <span class="input-group-btn">
+                      <button type="submit" class="btn btn-primary btn-flat"><i class="fa fa-search"></i>   {%trans "search" %}</button>
+                    </span>
+
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                            </div>
+
+
+
+
+
+
+
+
+
+
+
+            <div class="box-body table-responsive no-padding">
+                {% if perms.neoapp.add_costumer%}
+                <a class="btn btn-primary" href="{% url 'costumer_create' %}">{%trans "new customer"%}</a>
+
+                <hr>
+                {%endif%}
+
+
+                <h2 class="box-title">{%trans "total_costumer"%} :  <strong>{{paginator.count}}</strong></h2>
+                {% if messages %}
+
+                        {% for message in messages %}
+                            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                                <div class="callout callout-danger">
+                                    <h4>{%trans "error"%}</h4>
+                                    <p>{{message}}</p>
+                                </div>
+                            {%else%}
+                                    <div class="alert alert-success text-center " role="alert">
+                                         <i class="fa fa-bell ico-2x"></i> <strong>{{message}}</strong>
+                                    </div>
+
+                            {%endif%}
+
+
+
+
+                        {% endfor %}
+
+                        {% endif %}
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>{%trans "criation" %}</th>
+                        <th>{%trans "name" %}</th>
+                        <th>{%trans "CPF" %}</th>
+                        <th>{%trans "address" %}</th>
+                        <th>{%trans "neighborhood" %}</th>
+                        <th>{%trans "city" %}</th>
+                        <th>{%trans "cards" %}</th>
+                        <th class="text-center">{%trans "details" %}</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+
+
+                    {% with obj=object_list|dictsortreversed:"name"  %}
+
+
+
+
+                   {% for costumer in obj   %}
+                    <tr>
+                        <td>{{costumer.creation}}</td>
+                        <td>{{costumer.name}}</td>
+                        <td>{{costumer.cpf_view}}</td>
+                        <td>{{costumer.logradouro}}</td>
+                        <td>{{costumer.bairro}}</td>
+                        <td>{{costumer.cidade}}</td>
+                        <td>{{costumer.cards.count}}</td>
+                        <td class="text-right">
+                            <a class="btn btn-social-icon btn-github" href="{% url "costumer_detail" costumer.id%}" data-togle="tooltip" title="{%trans "user_profile" %}"><i class="fa fa-user"></i></a>
+                            <a class="btn btn-social-icon btn-twiter" href="{%url 'paynfo_list' costumer.id %}" data-togle="tooltip" title="{%trans "btn_payment_info" %}"><i class="fa fa-credit-card"></i></a>
+                            <a class="btn btn-primary" href="{% url 'costumer_update' costumer.id %}?next={% url 'costumer_detail' costumer.id %}" data-togle="tooltip" title="{%trans "edit_costumer" %}"><i class="fa fa-edit"></i></a>
+
+
+
+                        </td>
+
+
+                    </tr>
+
+
+
+                    {% endfor %}
+                    {% endwith %}
+
+                    </tbody>
+                </table>
+
+                {% if is_paginated %}
+
+                <ul class="pagination">
+                    {% if page_obj.has_previous %}
+                    <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+                    {% else %}
+                    <li class="disabled"><span>&laquo;</span></li>
+                    {% endif %}
+                    {% for i in paginator.page_range %}
+                    {% if page_obj.number == i %}
+                    <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                    {% else %}
+                    <li><a href="?page={{ i }}">{{ i }}</a></li>
+                    {% endif %}
+                    {% endfor %}
+                    {% if page_obj.has_next %}
+                    <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+                    {% else %}
+                    <li class="disabled"><span>&raquo;</span></li>
+                    {% endif %}
+                </ul>
+                {% endif %}
+            </div>
+                <!-- /.box-body -->
+
+
+                <!-- /.box -->
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

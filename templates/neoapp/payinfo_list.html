@@ -1,0 +1,113 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% load i18n %}
+{% block content %}
+
+
+
+
+
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+
+                    <h1>{{object_list.0}}</h1>
+
+
+
+            </div>
+
+
+
+
+            <div class="box-body table-responsive no-padding">
+                 {% if messages %}
+
+                {% for message in messages %}
+                   <div class="alert alert-success" role="alert">
+                       {{message}}
+                   </div>
+                {% endfor %}
+
+        {% endif %}
+
+
+
+
+                {% if perms.neoapp.add_payinfo %}
+                <a class="btn btn-primary " href="{% url 'payinfo_create'  object_list.0.id%}">{%trans "new_card"%}</a>
+                {%endif%}
+                <table class="table table-hover">
+                    <thead>
+
+                    <tr>
+
+                        <th>{%trans "criation" %}</th>
+                        <th>{%trans "Nome" %}</th>
+                        <th>{%trans "cc" %}</th>
+
+
+
+                    </tr>
+                    </thead>
+                    <tbody>
+
+
+
+                    {% with obj=object_list|dictsortreversed:"name"  %}
+
+
+
+
+                   {% for cc in object_list.0.cards   %}
+                    <tr>
+                        <td>{{cc.creation}}</td>
+                        <td>{{cc.name}}</td>
+                        <td>{{cc.card_view}}</td>
+
+
+                        <td class="text-right">
+                            <a class="btn btn-primary" href="{% url 'payinfo_update' cc.id  %}" data-togle="tooltip" title="{%trans "payinfo_update" %}"><i class="fa fa-edit"></i></a>
+                            {%if perms.neoapp.delete_payinfo%}
+                            <a class="btn btn-danger" href="{% url 'payinfo_delete' cc.id  %}" data-togle="tooltip" title="{%trans "payinfo_delete" %}"><i class="far fa-trash-alt"></i></a>
+                            {%endif%}
+
+
+
+
+
+                        </td>
+
+
+                    </tr>
+
+
+
+                    {% endfor %}
+                    {% endwith %}
+
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.box-body -->
+
+
+            <!-- /.box -->
+        </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

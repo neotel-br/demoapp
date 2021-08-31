@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!--Headers-->
+{% include 'base/header.html' %}
+
+
+<body class="app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden">
+<!--Navbar-->
+{% include 'base/navbar.html' %}
+{% include 'base/sidebar.html' %}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header ">
+      <h1>
+        {{page_header|default:"NeoAPP"}}
+        <small>{{page_description |default:"Neotel APP"  }}</small>
+      </h1>
+     <!--
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+        <li class="active">Here</li>
+      </ol>
+      <-->
+    </section>
+      <!-- Main content -->
+    <section class="content container-fluid">
+
+        {% block content %}
+        <!-- Content Wrapper. Contains page content -->
+
+        {% endblock %}
+
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+
+<!--Aside bar-->
+{# include 'base/asidebar.html' #}
+
+
+<!--JS-->
+{% include 'base/js.html' %}
+{% include 'base/footer.html' %}
+
+</body>
+</html>

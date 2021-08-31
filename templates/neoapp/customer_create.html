@@ -1,0 +1,30 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">{%trans "costumer_edit"%}</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form method="post">
+              <div class="box-body">
+                  {% csrf_token %}
+                  {{ form |crispy}}
+
+                </div>
+              </div>
+              <!-- /.box-body -->
+
+              <div class="box-footer">
+                <button type="submit" class="btn btn-primary">{%trans "save" %}</button>
+                <a class="btn btn-danger text-right" href="{%url "costumer_list"%}">{%trans "cancel" %}</a>
+              </div>
+            </form>
+          </div>
+
+{% endblock %}
