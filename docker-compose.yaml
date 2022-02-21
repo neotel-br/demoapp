@@ -1,0 +1,11 @@
+---
+version: "3"
+
+services:
+  demoapp:
+    environment:
+      - "VTS_URL=10.1.0.248"
+      - "TOKEN_PASS=!3BananaAmassada"
+    image: asrocha/neoapp
+    ports:
+      - "9000:8000"
