@@ -23,7 +23,7 @@ Em um terminal, exporte as seguintes variáveis de ambiente:
   ```
 
 
-### - Execute diretamente
+### - Execute do código fonte
 1. Clone o repositório:
   ```console
   $ git clone https://github.com/neotel-br/demoapp/
