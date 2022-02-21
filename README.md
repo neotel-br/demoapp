@@ -8,14 +8,20 @@ Em um terminal, exporte as seguintes variáveis de ambiente:
   ```console
   $ export VTS_URL=132.226.244.247
   $ export TOKEN_PASS="!3BananaAmassada"
-  ```
-
+  ```  
 ### - Execute via Docker
 
 * Execute o seguinte comando:
   ```console
   $ docker run  -e VTS_URL=$VTS_URL -e TOKEN_PASS=$TOKEN_PASS -p 8000:8000 asrocha/neoapp
   ```
+
+### - Execute via docker-compose
+  Baixe o arquivo `docker-compose.yaml` ou o repositório e execute `docker compose up`
+  ```console
+  $ git clone https://github.com/neotel-br/demoapp/ && cd demoapp/ && docker compose up 
+  ```
+
 
 ### - Execute diretamente
 1. Clone o repositório:
